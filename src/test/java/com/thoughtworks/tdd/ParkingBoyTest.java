@@ -35,18 +35,6 @@ public class ParkingBoyTest {
         Assertions.assertSame(car1,fetchCar1);
         Assertions.assertSame(car2,fetchCar2);
     }
-//    @Test
-////    public void should_return_null_when_call_fetch_given_no_ticket () {
-////        //given
-////        ParkingLot parkingLot = new ParkingLot();
-////        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-////        Car car = new Car();
-////        Ticket ticket = parkingBoy.park(car);
-////        //when
-////        Car actual = parkingBoy.fetch(null);
-////        //then
-////        Assertions.assertNull(actual);
-////    }
     @Test
     public void should_return_null_when_call_fetch_given_wrong_ticket () {
         //given
@@ -105,5 +93,18 @@ public class ParkingBoyTest {
     public void should_return_null_and_print_reason_when_call_fetch_given_ticket_have_been_used () {
         should_return_null_when_call_fetch_given_ticket_have_been_used();
         Assertions.assertTrue(systemOut().endsWith("Unrecognized parking ticket."));
+    }
+    @Test
+    public void should_return_null_and_print_when_call_fetch_given_no_ticket () {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+        //when
+        Car actual = parkingBoy.fetch(null);
+        //then
+        Assertions.assertNull(actual);
+        Assertions.assertTrue(systemOut().endsWith("Please provide your parking ticket."));
     }
 }

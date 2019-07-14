@@ -21,11 +21,13 @@ public class ParkingLot {
     public Car fetch(Ticket ticket) {
         Car result=null;
         if(ticket==null){
-            result= null;
+            System.out.print("Please provide your parking ticket.");
+            return null;
+        }else{
+            result = ticket.getCar();
+            //pakingLot中存tickets,Ticket中可以得到对应的车，取完车之后根据票将车设置为null
+            ticket.setCar(null);
         }
-        result = ticket.getCar();
-        //pakingLot中存tickets,Ticket中可以得到对应的车，取完车之后根据票将车设置为null
-        ticket.setCar(null);
         if(result==null){
             System.out.print("Unrecognized parking ticket.");
         }
