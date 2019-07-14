@@ -1,14 +1,18 @@
 package com.thoughtworks.tdd;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ParkingLot {
-    private Car car1;
-    private Car car2;
+    private List<Ticket> tickets;
+    public ParkingLot() {
+        tickets=new ArrayList<>();
+    }
+
     public Ticket park(Car car) {
-        if(car1==null){
-            car1=car;
-        }else{
-            car2=car;
-        }
-        return new Ticket();
+        Ticket ticket=new Ticket(car);
+        tickets.add(ticket);
+        return ticket;
     }
 
     public Car fetch(Ticket ticket) {
@@ -16,12 +20,5 @@ public class ParkingLot {
             return null;
         }
         return ticket.getCar();
-//        if(car1!=null){
-//            Car tempcar=car1;
-//            car1=null;
-//            return tempcar;
-//        }else{
-//            return car2;
-//        }
     }
 }

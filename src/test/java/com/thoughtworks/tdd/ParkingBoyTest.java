@@ -56,4 +56,18 @@ public class ParkingBoyTest {
         //then
         Assertions.assertNull(actual);
     }
+//    @Test
+//    public void should_return_null_when_call_fetch_given_ticket_have_been_used () {
+//        //given
+//        ParkingLot parkingLot = new ParkingLot();
+//        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+//        Car car = new Car();
+//        Ticket ticket = parkingBoy.park(car);
+//        //when
+//        parkingBoy.fetch(ticket);
+//        Car actual = parkingBoy.fetch(ticket);
+//        //the
+//        Assertions.assertNull(actual);
+//
+//    }
 }
