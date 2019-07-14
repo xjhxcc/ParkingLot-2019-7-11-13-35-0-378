@@ -66,8 +66,22 @@ public class ParkingBoyTest {
         //when
         parkingBoy.fetch(ticket);
         Car actual = parkingBoy.fetch(ticket);
-        //the
+        //then
         Assertions.assertNull(actual);
+
+    }
+    @Test
+    public void should_return_null_when_call_park_given_pakingLot_greater_than_or_equal_to_10 () {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        for(int i=0;i<10;i++){
+            Ticket ticket = parkingBoy.park(new Car());
+        }
+        //when
+        Ticket ticket=parkingBoy.park(new Car());
+        //then
+        Assertions.assertNull(ticket);
 
     }
 }

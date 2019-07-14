@@ -10,6 +10,9 @@ public class ParkingLot {
     }
 
     public Ticket park(Car car) {
+        if(tickets.size()>=10){
+            return null;
+        }
         Ticket ticket=new Ticket(car);
         tickets.add(ticket);
         return ticket;
