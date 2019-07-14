@@ -19,6 +19,9 @@ public class ParkingLot {
         if(ticket==null){
             return null;
         }
-        return ticket.getCar();
+        Car result = ticket.getCar();
+        //pakingLot中存tickets,Ticket中可以得到对应的车，取完车之后根据票将车设置为null
+        ticket.setCar(null);
+        return result;
     }
 }

@@ -10,6 +10,10 @@ public class Ticket {
         return car;
     }
 
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
     public Ticket(Car car) {
         this.car = car;
     }
