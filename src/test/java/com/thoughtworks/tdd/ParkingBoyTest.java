@@ -2,6 +2,9 @@ package com.thoughtworks.tdd;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 public class ParkingBoyTest {
     @Test
     public void should_return_car_when_call_fetch_given_ticket_from_park(){
@@ -32,18 +35,18 @@ public class ParkingBoyTest {
         Assertions.assertSame(car1,fetchCar1);
         Assertions.assertSame(car2,fetchCar2);
     }
-    @Test
-    public void should_return_null_when_call_fetch_given_no_ticket () {
-        //given
-        ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-        Car car = new Car();
-        Ticket ticket = parkingBoy.park(car);
-        //when
-        Car actual = parkingBoy.fetch(null);
-        //then
-        Assertions.assertNull(actual);
-    }
+//    @Test
+////    public void should_return_null_when_call_fetch_given_no_ticket () {
+////        //given
+////        ParkingLot parkingLot = new ParkingLot();
+////        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+////        Car car = new Car();
+////        Ticket ticket = parkingBoy.park(car);
+////        //when
+////        Car actual = parkingBoy.fetch(null);
+////        //then
+////        Assertions.assertNull(actual);
+////    }
     @Test
     public void should_return_null_when_call_fetch_given_wrong_ticket () {
         //given
@@ -84,9 +87,23 @@ public class ParkingBoyTest {
         Assertions.assertNull(ticket);
 
     }
+    private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+
+    public ParkingBoyTest () {
+        System.setOut(new PrintStream(outContent));
+    }
+
+    private String systemOut() {
+        return outContent.toString();
+    }
     @Test
     public void should_return_null_and_print_reason_when_call_fetch_given_wrong_ticket ()  {
         should_return_null_when_call_fetch_given_wrong_ticket();
-        System.out.println("You provided a wrong ticket\n");
+        Assertions.assertTrue(systemOut().endsWith("Unrecognized parking ticket."));
+    }
+    @Test
+    public void should_return_null_and_print_reason_when_call_fetch_given_ticket_have_been_used () {
+        should_return_null_when_call_fetch_given_ticket_have_been_used();
+        Assertions.assertTrue(systemOut().endsWith("Unrecognized parking ticket."));
     }
 }
