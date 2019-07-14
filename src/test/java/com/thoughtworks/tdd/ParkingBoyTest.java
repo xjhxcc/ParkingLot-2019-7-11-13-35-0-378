@@ -84,4 +84,9 @@ public class ParkingBoyTest {
         Assertions.assertNull(ticket);
 
     }
+    @Test
+    public void should_return_null_and_print_reason_when_call_fetch_given_wrong_ticket ()  {
+        should_return_null_when_call_fetch_given_wrong_ticket();
+        System.out.println("You provided a wrong ticket\n");
+    }
 }
