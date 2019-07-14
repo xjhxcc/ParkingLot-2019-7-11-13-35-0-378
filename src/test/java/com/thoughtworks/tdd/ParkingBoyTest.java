@@ -61,20 +61,6 @@ public class ParkingBoyTest {
         Assertions.assertNull(actual);
 
     }
-    @Test
-    public void should_return_null_when_call_park_given_pakingLot_greater_than_or_equal_to_10 () {
-        //given
-        ParkingLot parkingLot = new ParkingLot();
-        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
-        for(int i=0;i<10;i++){
-            Ticket ticket = parkingBoy.park(new Car());
-        }
-        //when
-        Ticket ticket=parkingBoy.park(new Car());
-        //then
-        Assertions.assertNull(ticket);
-
-    }
     private ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 
     public ParkingBoyTest () {
@@ -106,5 +92,20 @@ public class ParkingBoyTest {
         //then
         Assertions.assertNull(actual);
         Assertions.assertTrue(systemOut().endsWith("Please provide your parking ticket."));
+    }
+    @Test
+    public void should_return_null_and_print_when_call_park_given_pakingLot_greater_than_or_equal_to_10 () {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        for(int i=0;i<10;i++){
+            Ticket ticket = parkingBoy.park(new Car());
+        }
+        //when
+        Ticket ticket=parkingBoy.park(new Car());
+        //then
+        Assertions.assertNull(ticket);
+        Assertions.assertTrue(systemOut().endsWith("Not enough position."));
+
     }
 }

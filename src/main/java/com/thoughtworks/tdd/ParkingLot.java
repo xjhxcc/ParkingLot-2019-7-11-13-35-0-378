@@ -11,6 +11,7 @@ public class ParkingLot {
 
     public Ticket park(Car car) {
         if(tickets.size()>=10){
+            System.out.print("Not enough position.");
             return null;
         }
         Ticket ticket=new Ticket(car);
