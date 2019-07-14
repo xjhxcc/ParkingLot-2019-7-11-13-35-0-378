@@ -113,7 +113,7 @@ public class ParkingBoyTest {
 
     }
     @Test
-    public void should_return_when_call_pake_in_second_pakingLot_given_frist_pakingLot_full(){
+    public void should_return_park_in_more_parkingLot_when_call_park_in_second_parkingLot_given_first_parkingLot_full(){
         //given
         ParkingLot parkingLot = new ParkingLot();
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
@@ -126,8 +126,22 @@ public class ParkingBoyTest {
             parkingBoy.park(new Car());
         }
         //then
-        //assertThat(parkingBoy.getParkingLotIndex(0).getTickets().size(),is(10));
+        assertThat(parkingBoy.getParkingLotIndex(0).getTickets().size(),is(10));
         assertThat(parkingBoy.getParkingLotIndex(1).getTickets().size(),is(2));
+    }
+    @Test
+    public void should_return__park_in_more_parkingLot_when_call_park_given_car(){
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        SmartPakingBoy smartPakingBoy = new SmartPakingBoy(parkingLot);
+        //when
+        smartPakingBoy.park(new Car());
+        smartPakingBoy.addParkingLot();
+        smartPakingBoy.park(new Car());
+        //then
+        assertThat(smartPakingBoy.getParkingLotIndex(0).getTickets().size(),is(1));
+        assertThat(smartPakingBoy.getParkingLotIndex(1).getTickets().size(),is(1));
+
 
     }
 }
