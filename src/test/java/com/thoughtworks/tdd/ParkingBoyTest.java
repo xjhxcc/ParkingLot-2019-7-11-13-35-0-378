@@ -32,4 +32,28 @@ public class ParkingBoyTest {
         Assertions.assertSame(car1,fetchCar1);
         Assertions.assertSame(car2,fetchCar2);
     }
+    @Test
+    public void should_return_null_when_call_fetch_given_no_ticket () {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+        //when
+        Car actual = parkingBoy.fetch(null);
+        //then
+        Assertions.assertNull(actual);
+    }
+    @Test
+    public void should_return_null_when_call_fetch_given_wrong_ticket () {
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car = new Car();
+        Ticket ticket = parkingBoy.park(car);
+        //when
+        Car actual = parkingBoy.fetch(new Ticket());
+        //then
+        Assertions.assertNull(actual);
+    }
 }

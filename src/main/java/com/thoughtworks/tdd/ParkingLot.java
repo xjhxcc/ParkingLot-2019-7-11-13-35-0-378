@@ -12,12 +12,16 @@ public class ParkingLot {
     }
 
     public Car fetch(Ticket ticket) {
-        if(car1!=null){
-            Car tempcar=car1;
-            car1=null;
-            return tempcar;
-        }else{
-            return car2;
+        if(ticket==null){
+            return null;
         }
+        return ticket.getCar();
+//        if(car1!=null){
+//            Car tempcar=car1;
+//            car1=null;
+//            return tempcar;
+//        }else{
+//            return car2;
+//        }
     }
 }
