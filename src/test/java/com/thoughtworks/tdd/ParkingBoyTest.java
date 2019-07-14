@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+
 public class ParkingBoyTest {
     @Test
     public void should_return_car_when_call_fetch_given_ticket_from_park(){
@@ -106,6 +110,24 @@ public class ParkingBoyTest {
         //then
         Assertions.assertNull(ticket);
         Assertions.assertTrue(systemOut().endsWith("Not enough position."));
+
+    }
+    @Test
+    public void should_return_when_call_pake_in_second_pakingLot_given_frist_pakingLot_full(){
+        //given
+        ParkingLot parkingLot = new ParkingLot();
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        for(int i=0;i<10;i++){
+           parkingBoy.park(new Car());
+        }
+        parkingBoy.addParkingLot();
+        //when
+        for(int i=0;i<2;i++){
+            parkingBoy.park(new Car());
+        }
+        //then
+        //assertThat(parkingBoy.getParkingLotIndex(0).getTickets().size(),is(10));
+        assertThat(parkingBoy.getParkingLotIndex(1).getTickets().size(),is(2));
 
     }
 }

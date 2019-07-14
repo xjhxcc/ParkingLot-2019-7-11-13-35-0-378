@@ -2,6 +2,7 @@ package com.thoughtworks.tdd;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.ZipEntry;
 
 public class ParkingLot {
     private List<Ticket> tickets;
@@ -33,5 +34,9 @@ public class ParkingLot {
             System.out.print("Unrecognized parking ticket.");
         }
         return result;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
     }
 }
